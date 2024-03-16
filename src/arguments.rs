@@ -34,10 +34,10 @@ impl fmt::Display for ArgsError
             List all available currencies:
             ./exchange-rate-api --codes
 
+            -----------------------------------------------------
+            
             List all available currencies and the current exchange rates against a single currency:
             ./exchange-rate-api <source>
-
-            -----------------------------------------------------
 
             Provide one argument:
             <source> - the currency you are converting from,
