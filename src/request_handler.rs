@@ -110,7 +110,7 @@ impl  ConversionRates {
 #[async_trait]
 impl ApiRequest for StandardRequest {
     async fn fetch(&self) -> Result<Option<FetchResult>, Box<dyn std::error::Error>> {
-        let url = format!("https://v6.exchangerate-api.com/v6/{}/pair/{}/{}/{}", self.api_key, self.target, self.source, self.decimal_value);
+        let url = format!("https://v6.exchangerate-api.com/v6/{}/pair/{}/{}/{}", self.api_key, self.source, self.target, self.decimal_value);
         let response: Response = Client::new()
             .get(&url)
             .send()
