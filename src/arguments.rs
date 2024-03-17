@@ -2,7 +2,7 @@ use rust_decimal::{prelude::Zero, Decimal};
 use core::fmt;
 use std::{env, str::FromStr};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug)]
 pub enum ArgsError 
 {
     HelpRequested,
