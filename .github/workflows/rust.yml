@@ -28,6 +28,8 @@ jobs:
     environment: API_KEY
     needs: build_docker_image
     steps:
+    - name: List Docker images
+      run: docker images
     - name: Run tests on the Docker image
       run: docker run --env API_KEY=${{ secrets.API_KEY }} bgarbach/exchange_rate_api:0.1 cargo test
 
