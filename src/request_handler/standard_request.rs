@@ -81,7 +81,6 @@ impl ApiRequest for StandardRequest {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;

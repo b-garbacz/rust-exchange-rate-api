@@ -1,12 +1,7 @@
 FROM rust:latest as builder
 
-WORKDIR /usr/home/myapp
+WORKDIR /usr/home/rust-exchange-rate-api
 
 COPY . .
 
-ARG API_KEY
-
-RUN cargo build
-
-RUN  cargo test
-
+RUN cargo build --release
