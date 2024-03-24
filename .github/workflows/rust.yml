@@ -13,6 +13,7 @@ jobs:
   build_and_test_rust_code:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout 1
     - uses: actions/checkout@v3
 
     - name: Build
@@ -26,7 +27,7 @@ jobs:
     needs: build-and-test
     environment: API_KEY
     steps:
-    - name: Checkout
+    - name: Checkout 2
     - uses: actions/checkout@v3
 
     - name: Login to Docker Hub
