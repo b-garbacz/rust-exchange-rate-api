@@ -2,6 +2,7 @@ use exchange_rate_api::request_handler::{ApiRequest, ConversionRates, StandardRe
 use rust_decimal::Decimal;
 use tokio;
 use std::env;
+
 #[tokio::test]
 async fn test_fetch_with_invalid_api_key() {
     let invalid_api_key = "invalid_key".to_string();
