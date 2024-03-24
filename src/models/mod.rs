@@ -1,7 +1,6 @@
 use serde::{Serialize,Deserialize};
 use rust_decimal::Decimal;
 use std::collections::HashMap;
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ApiResponse 
 {
