@@ -8,6 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  API_KEY: ${{ secrets.API_KEY }}
 
 jobs:
   build_and_test_rust_code:
