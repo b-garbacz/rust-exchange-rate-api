@@ -1,24 +1,28 @@
-use std::env;
-use tokio;
 mod arguments;
 mod request_handler;
-use request_handler::ApiRequest;
-use request_handler::FetchResult;
+mod models;
+use crate::models::FetchResult;
+use crate::request_handler::ApiRequest;
+
+use std::env;
+use tokio;
 
 #[tokio::main]
+
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     match arguments::parse() {
         Ok((source, target, decimal_value)) => {
 
-            let api_key = match env::var_os("API_KEY") 
+            let api_key = match env::var_os("API_KEY")
             {
-                Some(_str) => _str.into_string().unwrap(),
+                Some(api_key_string) => api_key_string.into_string().unwrap(),
                 None => panic!("$API_KEY is not set")
             };
 
             if !source.is_empty() && !target.is_empty() && !decimal_value.is_zero()
             {
-                let request = request_handler::StandardRequest::new(&source, &target, decimal_value, api_key);
+                let prefix = "https://v6.exchangerate-api.com/".to_owned();
+                let request = request_handler::StandardRequest::new(&source, &target, &decimal_value, &api_key, &prefix);
                 match request.fetch().await {
                     Ok(Some(FetchResult::Decimal(convertion_result))) => {
                         println!("Conversion from {} -> {} = {:?}", source, target, convertion_result);
@@ -34,7 +38,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             } 
             else if source.is_empty() && target.is_empty() && decimal_value.is_zero()
             {
-                let request = request_handler::SupportedCodes::new(api_key);
+                let prefix = "https://v6.exchangerate-api.com/".to_string();
+                let request = request_handler::SupportedCodes::new(&api_key, &prefix);
                 match request.fetch().await {
                     Ok(Some(FetchResult::VecString(supported_codes))) => {
                         for currency_pair in supported_codes {
@@ -47,7 +52,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             }
             else if !source.is_empty()  && target.is_empty() && decimal_value.is_zero() {
-                let request = request_handler::ConversionRates::new(source, api_key);
+                let prefix = "https://v6.exchangerate-api.com/".to_string();
+                let request = request_handler::ConversionRates::new(&source, &api_key, &prefix);
                 match request.fetch().await {
                     Ok(Some(FetchResult::HashMapRates(conversion_rates))) => {
                         for element in conversion_rates

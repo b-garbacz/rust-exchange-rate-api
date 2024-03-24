@@ -1,14 +1,15 @@
 [package]
-name = "exchange-rate-api"
-version = "0.1.0"
+name = "exchange_rate_api"
+version = "0.1.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-reqwest = { version = "0.11.26", features = ["json"] }
+reqwest = { version = "0.12.0", features = ["json"] }
 serde = { version = "1.0", features = ["derive"] }
 tokio = { version = "1.12.0", features = ["full"] }
 rust_decimal = "1.17"
 async-trait = "0.1.77"
-chrono ="0.4.35"
+chrono = "0.4.35"
+wiremock = "0.6.0"

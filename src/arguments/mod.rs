@@ -16,38 +16,41 @@ impl fmt::Display for ArgsError
     {
         match *self 
         {
-            ArgsError::HelpRequested => write!(f, "
-            
-            -----------------------------------------------------
+            ArgsError::HelpRequested => write!(f,"{}", 
+"-----------------------------------------------------
 
-            Default mode:
-            ./exchange-rate-api <source> <target> <decimal_value>
-            Provide three arguments: 
-            <source> - the currency you are converting from,
-            <target> - the currency you are converting to,
-            <decimal_value> - the amount to be converted.
+Default mode:
+./exchange-rate-api <source> <target> <decimal_value>
+Provide three arguments: 
+<source> - the currency you are converting from,
+<target> - the currency you are converting to,
+<decimal_value> - the amount to be converted.
 
-            Example: ./exchange-rate-api USD PLN 100.50
+Example: ./exchange-rate-api USD PLN 100.50
 
-            -----------------------------------------------------
+-----------------------------------------------------
 
-            List all available currencies:
-            ./exchange-rate-api --codes
+List all available currencies:
+./exchange-rate-api --codes
 
-            -----------------------------------------------------
-            
-            List all available currencies and the current exchange rates against a single currency:
-            ./exchange-rate-api <source>
+-----------------------------------------------------
 
-            Provide one argument:
-            <source> - the currency you are converting from,
-            Example: ./exchange-rate-api USD
+List all available currencies and the current exchange rates against a single currency:
+./exchange-rate-api <source>
 
-            -----------------------------------------------------
-            "),
+Provide one argument:
+<source> - the currency you are converting from,
+Example: ./exchange-rate-api USD
+
+-----------------------------------------------------
+"),
     
-            ArgsError::InvalidNumberOfArguments => write!(f, "Invalid number of arguments! Use --help to display help message."),
-            ArgsError::ParseError => write!(f, "Error with parsing 3th argument. Please enter floating number\n"),
+            ArgsError::InvalidNumberOfArguments => write!(f, "{}",
+"Invalid number of arguments! Use --help to display help message.
+"),
+            ArgsError::ParseError => write!(f, "{}",
+"Error with parsing 3th argument. Please enter floating number
+"),
         }
     }
 }
