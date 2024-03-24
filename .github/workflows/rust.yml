@@ -17,8 +17,8 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with: 
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Pull Docker image
       run: docker pull bgarbach/exchange_rate_api:0.1
