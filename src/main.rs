@@ -21,7 +21,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             if !source.is_empty() && !target.is_empty() && !decimal_value.is_zero()
             {
-                let prefix = "https://v6.exchangerate-api.com/".to_owned();
+                let prefix = "https://v6.exchangerate-api.com/".to_string();
                 let request = request_handler::StandardRequest::new(&source, &target, &decimal_value, &api_key, &prefix);
                 match request.fetch().await {
                     Ok(Some(FetchResult::Decimal(convertion_result))) => {
